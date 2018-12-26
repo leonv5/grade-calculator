@@ -20,12 +20,10 @@ export default class Fach extends Component {
 
     handleMouseEnterGewichtung = () => {
         this.setState({isInGewichtung: true})
-        console.log("IN")
     }
 
     handleMouseLeaveGewichtung = () => {
         this.setState({isInGewichtung: false})
-        console.log("OUT")
     }
 
     checkIfVisible = () => {

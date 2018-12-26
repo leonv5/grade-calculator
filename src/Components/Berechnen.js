@@ -8,6 +8,9 @@ export default class Berechnen extends Component {
 
     calculateNC = () => {
         const { fächer } = this.props
+        if(fächer.length < 8){
+            return alert("Wähle 8 Fächer!")
+        }
         let points = 0;
         console.log("Calculating...")
         fächer.forEach(item => {

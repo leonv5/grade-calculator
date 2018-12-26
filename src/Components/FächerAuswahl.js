@@ -44,8 +44,8 @@ export default class FächerAuswahl extends Component {
         <h5 style={{color: `${this.checkEnough() ? "green" : "red"}`}}>{this.props.selektedCount + "/8"}</h5>
         <div className="faecherListe">
           {
-              Fächer.map(item => {
-                  return <Fach select={this.props.selektedCount} count={this.checkGewichtung()} click={this.props.handleClick} name={item.name} />
+              Fächer.map((item, i) => {
+                  return <Fach key={i} select={this.props.selektedCount} count={this.checkGewichtung()} click={this.props.handleClick} name={item.name} />
               })
           }
         </div>
