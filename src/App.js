@@ -11,6 +11,11 @@ import {addFach} from "./Redux/actions"
 class App extends Component {
 
   render() {
+
+    if (!window.location.href.includes("#")) {
+      window.location = "https://antonwy.github.io/grade-calculator/#/"
+    }
+
     return (
       <Router basename={process.env.PUBLIC_URL + "/#/"} className="App">
         <div className="mainContainer">
