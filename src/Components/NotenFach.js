@@ -1,44 +1,47 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
+import {updateNC} from '../Redux/actions'
 
-export default class NotenFach extends Component {
+class NotenFach extends Component {
 
     state = {
-        selectValue: "15"
+        selectValue: "15",
     }
 
-    chooseGewichtungColor = () => {
-        switch (this.props.kurs.gewichtung) {
+    chooseGewichtungColor = (gewichtung) => {
+        switch (gewichtung) {
             case "LK":
-                return { backgroundColor: "#FE4A49", boxShadow: "5px 5px rgb(199, 58, 58)" }
+                return { backgroundColor: "#DBE6EF", color: "grey" }
             case "GK": 
-                return { backgroundColor: "#2AB7CA", boxShadow: "5px 5px rgb(36, 139, 153)" }
+                return { backgroundColor: "rgb(202, 216, 228)", color: "grey" }
             case "MÜ": 
-                return { backgroundColor: "rgb(100, 228, 83)", boxShadow: "5px 5px rgb(90, 200, 70)" }
+                return { backgroundColor: "rgb(168, 186, 201)", color: "white" }
             case "EK": 
-                return { backgroundColor: "#FED766", boxShadow: "5px 5px rgb(201, 167, 66)" }
+                return { backgroundColor: "rgb(134, 158, 177)", color: "white" }
             default:
-                return { backgroundColor: "#FE4A49", boxShadow: "5px 5px rgb(199, 58, 58)" }
+                return { backgroundColor: "rgb(134, 158, 177)", color: "grey" }
         }
     }
 
     handleChange = (event) => {
-        this.setState({selectValue: event.target.value}, () => {
-            this.props.kurs.setNcPoints(this.state.selectValue);
-            console.log(this.props.kurs.calculatePoints())
-        });
+        const {kurs, fächer} = this.props
+        kurs.setNcPoints(event.target.value);
+        this.setState({selectValue: kurs.ncInPoints});
+        this.props.updateNC(fächer)
     }
 
   render() {
     const kurs = this.props.kurs;
+
     return (
-      <div className="notenChooser" style={this.chooseGewichtungColor()}>
+      <div className="notenChooser">
         <div className="nameGewichtung">
             <h3>{kurs.name}</h3>
             <div className="gewichtungIcon">
                 {kurs.gewichtung}
             </div>
         </div>
-        <select value={this.state.selectValue} onChange={this.handleChange} className="selectNote" name="noten">
+        <select value={this.state.selectValue != kurs.ncInPoints ? kurs.ncInPoints : this.state.selectValue} onChange={this.handleChange} className="selectNote" name="noten">
             <option value="15">1+</option>
             <option value="14">1</option>
             <option value="13">1-</option>
@@ -56,7 +59,17 @@ export default class NotenFach extends Component {
             <option value="1">5-</option>
             <option value="0">6</option>
         </select>
+
+        {/* <div onClick={this.handleDelete} className="fachLöschen">Löschen</div> */}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+    return {
+        fächer: state.fächer
+    }
+}
+
+export default connect(mapStateToProps, {updateNC})(NotenFach)

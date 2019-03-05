@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import Fach from './Fach';
 import { Fächer } from '../Daten/Fächer'
 
+import {connect} from 'react-redux'
+import {addFach} from '../Redux/actions'
+import {withRouter} from 'react-router-dom'
+
 let gewichtungCount = {
     lk: true,
     gk: true,
@@ -9,10 +13,10 @@ let gewichtungCount = {
     ek: true
 }
 
-export default class FächerAuswahl extends Component {
+class FächerAuswahl extends Component {
 
     checkEnough = () => {
-        if(this.props.selektedCount === 8){
+        if(this.props.fächer.length === 8){
             return true;
         }else {
             return false;
@@ -20,17 +24,18 @@ export default class FächerAuswahl extends Component {
     }
 
     checkGewichtung = () => {
-        gewichtungCount = {
-            lk: this.props.fächer.filter(item => item.gewichtung === "LK").length < 2,
-            gk: this.props.fächer.filter(item => item.gewichtung === "GK").length < 2,
-            mü: this.props.fächer.filter(item => item.gewichtung === "MÜ").length < 2,
-            ek: this.props.fächer.filter(item => item.gewichtung === "EK").length < 2,
-        }
-        return gewichtungCount
+      const {fächer} = this.props;
+      gewichtungCount = {
+          lk: fächer.filter(item => item.gewichtung === "LK").length < 2,
+          gk: fächer.filter(item => item.gewichtung === "GK").length < 2,
+          mü: fächer.filter(item => item.gewichtung === "MÜ").length < 2,
+          ek: fächer.filter(item => item.gewichtung === "EK").length < 2,
+      }
+      return gewichtungCount
     }
 
     handleClick = () => {
-        window.location.reload();
+      this.props.history.push('/noten')
     }
 
   render() {
@@ -38,14 +43,14 @@ export default class FächerAuswahl extends Component {
       <div className="faecherAuswahl">
         <div style={{visibility: `${this.checkEnough() ? "visible" : "hidden"}`}} className="finished">
             <a>FERTIG</a>
-            <div onClick={this.handleClick}>Nochmal</div>
+            <div onClick={this.handleClick}>Weiter</div>
         </div>
         <h2>Wähle deine Prüfungsfächer:</h2>
-        <h5 style={{color: `${this.checkEnough() ? "green" : "red"}`}}>{this.props.selektedCount + "/8"}</h5>
+        <h5 style={{color: `${this.checkEnough() ? "green" : "red"}`}}>{this.props.fächer.length + "/8"}</h5>
         <div className="faecherListe">
           {
               Fächer.map((item, i) => {
-                  return <Fach key={i} select={this.props.selektedCount} count={this.checkGewichtung()} click={this.props.handleClick} name={item.name} />
+                  return <Fach key={item.name} select={this.props.fächer.length} count={this.checkGewichtung()} click={this.props.addFach} name={item.name} />
               })
           }
         </div>
@@ -53,3 +58,12 @@ export default class FächerAuswahl extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    fächer: state.fächer
+  }
+}
+
+export default connect(mapStateToProps, {addFach})(withRouter(FächerAuswahl))

@@ -2,32 +2,25 @@ import React, { Component } from 'react';
 import './App.css';
 import FächerAuswahl from './Components/FächerAuswahl';
 import GewählteFächer from './Components/GewählteFächer';
-import Kurs from './Daten/Kurs'
 import Berechnen from './Components/Berechnen';
+import {BrowserRouter as Router, Route } from 'react-router-dom' 
+
+import {connect} from "react-redux"
+import {addFach} from "./Redux/actions"
 
 class App extends Component {
 
-  state = {
-    fächer: []
-  }
-
-  handleClick = (kurs) => {
-    this.setState(prevState => ({
-      fächer: [...prevState.fächer, kurs]
-    }))
-  }
-
   render() {
-    const {fächer} = this.state;
     return (
-      <div className="App">
-        <h1>Notenschnitt Rechner</h1>
-        <FächerAuswahl fächer={fächer} selektedCount={this.state.fächer.length} handleClick={this.handleClick}/>
-        <GewählteFächer fächer={fächer} />
-        <Berechnen fächer={fächer} />
-      </div>
+      <Router basename={process.env.PUBLIC_URL + "/#/"} className="App">
+        <div className="mainContainer">
+          <Route exact path="/" component={FächerAuswahl} />
+          <Route path="/noten" component={GewählteFächer} />
+          <Route path="/noten" component={Berechnen} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect(null, {addFach})(App);

@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
 
-export default class Berechnen extends Component {
+import {connect} from 'react-redux'
+import FächerVerbessern from './FächerVerbessern';
 
-    state = {
-        nc: 0
-    }
+class Berechnen extends Component {
 
-    calculateNC = () => {
-        const { fächer } = this.props
-        if(fächer.length < 8){
-            return alert("Wähle 8 Fächer!")
-        }
-        let points = 0;
-        console.log("Calculating...")
-        fächer.forEach(item => {
-            points += item.calculatePoints();
-            return points + item.calculatePoints()
-        });
-        let nc = 17/3 - (points/180);
-        let ncRounded = Math.abs(Math.round( nc * 10 ) / 10);
-        this.setState({nc: ncRounded});
+    componentDidMount() {
+      if(this.props.fächer.length < 8) {
+        this.props.history.push('/')
+      }
     }
 
   render() {
     return (
-      <div className="berechnenContainer">
-        <div onClick={this.calculateNC} className="berechnenBTN">Berechnen</div>
-        <h1>{`NC: ${this.state.nc}`}</h1>
+      <div>
+        <div className="berechnenContainer">
+          <h1>Dein NC ist: </h1>
+          <h1>{`NC: ${this.props.nc}`}</h1>
+        </div>
+        <FächerVerbessern />
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    nc: state.nc,
+    fächer: state.fächer
+  }
+}
+
+export default connect(mapStateToProps)(Berechnen)

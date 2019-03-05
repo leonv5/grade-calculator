@@ -1,22 +1,31 @@
 .App {
-  color: rgb(24, 24, 24);
+  color: #FBFBFB;
 }
 
 .App h1 {
   text-align: center;
   font-weight: bold;
   font-size: 50px;
-  color: #2AB7CA;
+  color: #DBE6EF;
   margin: 20px;
 }
 
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .faecherAuswahl {
-  width: 50%;
-  padding: 30px;
-  margin: auto;
-  background-color: #F4F4F8;
-  border-radius: 10px;
-  box-shadow: 5px 5px #FE4A49;
+  max-width: 700px;
+  width: 95%;
+  padding: 20px 0;
+  margin: 20px auto;
+  background-image: linear-gradient(45deg, #F49B8B 0%, #E8BAC9 100%);
+  border-radius: 7px;
   position: relative;
 }
 
@@ -31,7 +40,7 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: rgba(211, 86, 86, 0.733);
   color: white;
 }
@@ -70,17 +79,21 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 
 .fachContainer {
   position: relative;
-  margin: 10px;
-  padding: 10px 25px;
+  margin: 5px 10px;
+  padding: 15px 25px;
   background-color: rgb(236, 236, 236);
-  border-radius: 3px 3px 0 0;
+  border-radius: 3px;
+  color: grey;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .fachContainer:before {
@@ -90,7 +103,7 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: rgb(49, 49, 49);
+  background-color: #3A4048;
   transition: width 250ms;
 }
 
@@ -103,18 +116,15 @@
 }
 
 .gewichtung {
-  position: absolute;
   display: flex;
-  z-index: 2;
-  top: -100%;
-  left: -25%;
   justify-content: center;
-  width: 150%;
-  height: 100%;
+  height: 30px;
 }
 
 .gewichtung div {
-  width: calc(100% / 3);
+  min-width: 30px;
+  max-width: 50px;
+  width: 10vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,60 +132,69 @@
   font-weight: 100;
   font-size: 10px;
   transition: all 250ms;
+  border-radius: 3px;
+  margin: 0 5px;
+  color: grey;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.05);
 }
 
 .gewichtung div:hover {
-  transform: scale(1.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
-  border-radius: 5px;
+  transform: scale(.9);
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233); */
+  /* border-radius: 5px; */
 }
 
 .gewichtung .lk {
-  border-radius: 3px 0 0 3px;
-  background-color: #FE4A49;
+  background: #DBE6EF;
 }
 
 .gewichtung .gk {
-  background-color: #2AB7CA;
+  background: rgb(202, 216, 228);
 }
 
 .gewichtung .mü {
-  background-color: rgb(100, 228, 83);
+  background: rgb(168, 186, 201);
+  color: white;
 }
 
 .gewichtung .ek {
-  border-radius: 0 3px 3px 0;
-  background-color: #FED766;
+  background: rgb(134, 158, 177);
+  color: white;
 }
 
 .secondContainer {
-  width: 50%;
-  padding: 30px;
-  margin: 20px auto;
-  background-color: #F4F4F8;
+  max-width: 700px;
+  width: 95%;
+  padding: 20px 0;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background-color: white;
   border-radius: 10px;
-  box-shadow: 5px 5px #FED766;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .fächerCounter {
   display: flex;
   justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 3px;
+  background-color: #FBFBFB;
+  margin: 0 10px;
 }
 
 .gewählteFächer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 20px;
   justify-content: center;
+  align-items: center;
 }
 
 .notenChooser {
-  color: white;
-  width: calc(100% /3 - 40px);
-  min-width: 100px;
-  position: relative;
-  border-radius: 10px;
+  color: #3A4048;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -183,26 +202,28 @@
   align-items: center;
   text-align: center;
   padding: 20px 10px;
-  margin: 10px; 
+  margin: 10px;
+  /* box-shadow: 0 5px 7px rgba(0, 0, 0, 0.05); */
 }
 
 .nameGewichtung {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .nameGewichtung h3 {
-  margin-top: 0px;
+  margin: 0px;
 }
 
 .gewichtungIcon {
-  background-color: rgb(0, 102, 255);
-  width: 50px;
-  padding: 10px 0px;
+  background-color: rgb(243, 243, 243);
+  color: grey;
+  width: 40px;
+  padding: 7px 0px;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .selectNote {
@@ -215,45 +236,115 @@
   border-radius: 0px;
 }
 
+.fachLöschen {
+  margin-top: 20px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  transition: transform 250ms;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fachLöschen:hover {
+  transform: scale(1.1);
+}
+
+.nextFachContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nextFachContainer svg {
+  width: 30px;
+  margin: 0px 30px;
+}
+
 .berechnenContainer {
-  width: 50%;
-  padding: 30px;
-  margin: auto;
+  max-width: 700px;
+  width: 95vw;
+  padding: 20px 0;
   background-color: #F4F4F8;
   border-radius: 10px;
-  box-shadow: 5px 5px rgb(100, 228, 83);
+  margin: auto;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .berechnenContainer h1 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .berechnenBTN {
   width: 50%;
   color: white;
   padding: 8px 15px;
-  background-color: #FE4A49;
+  background-color: #3A4048;
   display: flex;
   justify-content: center;
   border-radius: 5px;
   cursor: pointer;
   margin: auto;
+  margin-top: 10px;
   transition: background-color 250ms;
 }
 
 .berechnenBTN:hover {
-  background-color: rgb(197, 57, 57);
+  background-color: rgb(74, 82, 92);
+}
+
+
+.verbessernContainer {
+  max-width: 700px;
+  width: 95vw;
+  padding: 20px 0;
+  margin: auto;
+  background-color: #F4F4F8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verbessernContainer>h2{
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  margin: 20px 0;
+  background-color: rgb(236, 236, 236);
+}
+
+.progressBar>div {
+  width: 70%;
+  height: 100%;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  border-radius: 5px;
+  transition: width 500ms;
+}
+
+.progressContainer {
+  width: 80%;
 }
 
 @media only screen and (max-width: 1000px) {
-  .faecherAuswahl {
-    width: 80%;
+  .mainContainer {
+    display: block;
   }
-  .secondContainer {
-    width: 80%;
+  .fachContainer {
+    padding: 15px 15px;
   }
-  .berechnenContainer {
-    width: 80%;
+  .gewichtung div {
+    margin: 0 2px;
   }
 }
