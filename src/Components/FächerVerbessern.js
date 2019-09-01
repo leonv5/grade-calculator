@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import Kurs from '../Daten/Kurs';
 
 /*
     - Das Fach was am meisten Punkte erreichen kann aber am wenigsten hat.
@@ -21,15 +20,12 @@ class FächerVerbessern extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props !== nextProps) {
-      console.log(nextProps)
       this.calculateVerbessern(nextProps.fächer)
     }
   }
 
   calculateVerbessern = (fächer) => {
     let valueArray = fächer.sort((a, b) => a.reachedPercent() - b.reachedPercent())
-    console.log(valueArray)
-
     this.setState({fächerVerbessern: valueArray})
   }
 

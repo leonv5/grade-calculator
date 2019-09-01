@@ -11,6 +11,7 @@ export const updateNC = (fächer) => {
         return points + item.calculatePoints()
     });
     let nc = 17/3 - (points/180);
-    let ncRounded = Math.abs(Math.round( nc * 10 ) / 10);
+    let ncRounded = Math.abs(Math.floor( nc * 10 ) / 10);
+    console.log(nc);
     return {type: UPDATE_NC, payload: ncRounded}
 }
