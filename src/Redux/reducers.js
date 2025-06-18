@@ -7,7 +7,7 @@ const defaultFächer = [
     new Kurs("Deutsch", "MÜ"),
     new Kurs("Biologie", "EK"),
     new Kurs("Geschichte", "GK"),
-    new Kurs("Geografie", "GK"),
+    new Kurs("Philosophie", "EK"),
     new Kurs("Sport", "EK"),
     new Kurs("Französisch", "MÜ"),
 ]

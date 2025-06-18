@@ -2,7 +2,7 @@
   "name": "grade-calculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://antonwy.github.io/grade-calculator/#/",
+  "homepage": "http://leonv5.github.io/grade-calculator/#/",
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

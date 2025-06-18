@@ -13,7 +13,7 @@ class App extends Component {
   render() {
 
     if (!window.location.href.includes("#")) {
-      window.location = "https://antonwy.github.io/grade-calculator/#/"
+      window.location = "https://leonv5.github.io/grade-calculator/#/"
     }
 
     return (

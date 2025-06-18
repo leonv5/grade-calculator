@@ -15,7 +15,7 @@ export const Fächer = [
         name: "Kunst"
     },
     {
-        name: "Geografie"
+        name: "Philosophie"
     },
     {
         name: "Geschichte"
